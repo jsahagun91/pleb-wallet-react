@@ -124,7 +124,7 @@ function App() {
         </div>
      </div>
      <footer>
-       <p>Made by plebs, for plebs.</p>
+       <p>Made by Jose Sahagun</p>
      </footer>
    </div>
  );
