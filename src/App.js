@@ -27,7 +27,7 @@ function App() {
   const getWalletBalance = () => {
     // move X-API-Key to a .env file to keep a secret when we push to Github.
     const headers = {
-      "X-Api-Key": "6d7b331b1fc847cd9d42bfb63593bdde",
+      "X-Api-Key": process.env.REACT_APP_LN_BITS_KEY,
     };
     axios
       .get("https://legend.lnbits.com/api/v1/wallet", { headers })
@@ -43,7 +43,6 @@ function App() {
     const headers = {
       "X-Api-Key": process.env.REACT_APP_LN_BITS_KEY,
     };
-    console.log(`${process.env.REACT_APP_LN_BITS_KEY}`);
     axios 
       .get("https://legend.lnbits.com/api/v1/payments", { headers })
       .then((res) => {
