@@ -41,8 +41,9 @@ function App() {
   const getTransactions = () => {
     // ToDo: Lookup how to move X-API-KEY to a .env file to keep it a secret for when we push to GitHub.
     const headers = {
-      "X-Api-Key": "6d7b331b1fc847cd9d42bfb63593bdde",
+      "X-Api-Key": process.env.REACT_APP_LN_BITS_KEY,
     };
+    console.log(`${process.env.REACT_APP_LN_BITS_KEY}`);
     axios 
       .get("https://legend.lnbits.com/api/v1/payments", { headers })
       .then((res) => {
