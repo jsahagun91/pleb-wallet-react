@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import './PaymentsModal.css';
+import QRCode from 'qrcode.react';
 
     const customStyles = {
         content: {
@@ -27,12 +28,14 @@ import './PaymentsModal.css';
             checkingId: '',
         });
 
+        const apiKey = process.env.REACT_APP_X_API_KEY;
+
         const handleSend = (e) => {
           // keep the page from refreshing when the form is submitted
           e.preventDefault();
 
           const headers = {
-            "X-Api-Key": "37661eb1bb9b4bd0931487c3c7d7d737",
+            "X-Api-Key": apiKey,
           };
           const data = {
             bolt11: formData.invoiceToPay,
@@ -54,13 +57,13 @@ import './PaymentsModal.css';
           e.preventDefault();
 
           const headers = { 
-            "X-Api-Key": "6d7b331b1fc847cd9d42bfb63593bdde",
+            "X-Api-Key": apiKey,
           };
           const data = {
             amount: formData.amount,
             out: false,
             // ToDo: Add additional form for user to be able to customize the memo
-            memo: "LNBits",
+            memo: "viva wallet!",
           };
           axios
             .post("https://legend.lnbits.com/api/v1/payments", data, { headers })
@@ -139,7 +142,9 @@ import './PaymentsModal.css';
               {invoice && (
                 <section>
                   <h3> Invoice created </h3>
+                  <center><QRCode value={invoice} /></center>
                   <p> {invoice} </p>
+
                   { /* ToDo: Create QR Code out of this invoice as well */}
                 </section>
               )}
