@@ -29,13 +29,14 @@ import QRCode from 'qrcode.react';
         });
 
         const apiKey = process.env.REACT_APP_X_API_KEY;
+        const sendApiKey = process.env.REACT_APP_SEND_X_API_KEY;
 
         const handleSend = (e) => {
           // keep the page from refreshing when the form is submitted
           e.preventDefault();
 
           const headers = {
-            "X-Api-Key": apiKey,
+            "X-Api-Key": sendApiKey,
           };
           const data = {
             bolt11: formData.invoiceToPay,
